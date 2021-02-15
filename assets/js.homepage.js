@@ -71,3 +71,18 @@ var displayRepos = function(repos, searchTerm) {
   console.log(repos);
   console.log(searchTerm);
 };
+fetch(apiUrl)
+  .then(function(response) {
+    // request was successful
+    if (response.ok) {
+      response.json().then(function(data) {
+        displayRepos(data, user);
+      });
+    } else {
+      alert("Error: " + response.statusText);
+    }
+  })
+  .catch(function(error) {
+    // Notice this `.catch()` getting chained onto the end of the `.then()` method
+    alert("Unable to connect to GitHub");
+  });
