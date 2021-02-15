@@ -33,6 +33,21 @@ for (var i = 0; i < repos.length; i++) {
   
       var userFormEl = document.querySelector("#user-form");
 var nameInputEl = document.querySelector("#username");
+  
+  fetch(apiUrl).then(function(response) {
+  if (response.ok) {
+    response.json().then(function(data) {
+      // check if api returned any repos
+if (repos.length === 0) {
+  repoContainerEl.textContent = "No repositories found.";
+  return;
+}
+      displayRepos(data, user);
+    });
+  } else {
+    alert("Error: " + response.statusText);
+  }
+});
       var formSubmitHandler = function(event) {
   event.preventDefault();
   console.log(event);
