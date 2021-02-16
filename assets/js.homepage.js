@@ -33,6 +33,13 @@ for (var i = 0; i < repos.length; i++) {
   
       var userFormEl = document.querySelector("#user-form");
 var nameInputEl = document.querySelector("#username");
+  languageButtonsEl.addEventListener("click", buttonClickHandler);
+  if (language) {
+  getFeaturedRepos(language);
+
+  // clear old content
+  repoContainerEl.textContent = "";
+}
   
   fetch(apiUrl).then(function(response) {
   if (response.ok) {
